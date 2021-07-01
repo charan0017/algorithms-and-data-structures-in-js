@@ -15,7 +15,7 @@ let fileDest = `dist${ESM ? '.esm' : ''}`;
 const external = ['@popperjs/core'];
 const plugins = [
     typescript({
-        tsconfig: path.resolve(__dirname, '../tsconfig.json'),
+        tsconfig: path.resolve(__dirname, '../tsconfig.browser.json'),
     }),
     babel({
         // Only transpile our source code

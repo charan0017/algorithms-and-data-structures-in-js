@@ -1,7 +1,7 @@
 node_modules/
 dist/*
 !dist/*dist*.js
-!dist/*.js.map
+!dist/*dist*.js.map
 
 .vscode/
 .idea/
