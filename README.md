@@ -102,12 +102,12 @@ const queue = new Queue();
 queue.enqueue("Apples");
 queue.enqueue("Mangoes");
 queue.enqueue("Bananas");
-stack.dequeue(); // it will return 'Apples'
-stack.front(); // it will return 'Mangoes'
-stack.size(); // it will return 2
-stack.toArray(); // it will return ["Mangoes", "Bananas"];
-stack.empty(); // it will empty the stack
-stack.isEmpty(); // it will return true
+queue.dequeue(); // it will return 'Apples'
+queue.front(); // it will return 'Mangoes'
+queue.size(); // it will return 2
+queue.toArray(); // it will return ["Mangoes", "Bananas"];
+queue.empty(); // it will empty the stack
+queue.isEmpty(); // it will return true
 
 const queueItems = ["Physics", "Math", "Chemistry"];
 const maxQueueSize = 2;
