@@ -17,8 +17,7 @@ describe('Queue Test', () => {
     it('queue.reverse()', () => {
         const queue = new Queue();
         movies.forEach(movie => queue.enqueue(movie));
-        expect(() => queue.reverse()).to.not.throw();
-        assert.deepEqual(queue.toArray(), movies.slice().reverse(), `Expected to receive Items of ${movies.slice().reverse()}`);
+        assert.deepEqual(queue.reverse(), movies.slice().reverse(), `Expected to receive Items of ${movies.slice().reverse()}`);
     });
 
     it('queue .empty(), .isEmpty()', () => {

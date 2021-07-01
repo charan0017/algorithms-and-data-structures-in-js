@@ -26,9 +26,10 @@ export default class Stack {
         return this.count;
     }
 
-    reverse(): void {
+    reverse(): any[] {
         const stackItems = this.empty();
         stackItems.reverse().forEach(item => this.push(item));
+        return stackItems;
     }
 
     empty(): any[] {

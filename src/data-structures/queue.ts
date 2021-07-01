@@ -81,9 +81,10 @@ export default class Queue {
         return this.count;
     }
 
-    reverse(): void {
+    reverse(): any[] {
         const queueItems = this.empty();
         queueItems.reverse().forEach(item => this.enqueue(item));
+        return queueItems;
     }
 
     empty(): any[] {

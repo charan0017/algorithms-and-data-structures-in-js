@@ -17,8 +17,7 @@ describe('Stack Test', () => {
     it('stack.reverse()', () => {
         const stack = new Stack();
         movies.forEach(movie => stack.push(movie));
-        expect(() => stack.reverse()).to.not.throw();
-        assert.deepEqual(stack.toArray(), movies.slice().reverse(), `Expected to receive Items of ${movies.slice().reverse()}`);
+        assert.deepEqual(stack.reverse(), movies.slice().reverse(), `Expected to receive Items of ${movies.slice().reverse()}`);
     });
 
     it('stack .empty(), .isEmpty()', () => {
