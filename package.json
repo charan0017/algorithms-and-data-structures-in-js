@@ -5,10 +5,12 @@
   "config": {
     "version_short": "0.3"
   },
+  "main": "main.js",
   "keywords": [
     "algorithms",
     "data-structures",
-    "stacks"
+    "stacks",
+    "queues"
   ],
   "repository": {
     "type": "git",
@@ -18,7 +20,6 @@
     "url": "https://github.com/charan0017/algorithms-and-data-structures-in-js/issues"
   },
   "homepage": "https://github.com/charan0017/algorithms-and-data-structures-in-js#readme",
-  "main": "main.js",
   "scripts": {
     "compile": "yarn tsc",
     "postinstall": "npm run compile",
