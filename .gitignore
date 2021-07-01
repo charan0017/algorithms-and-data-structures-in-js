@@ -1,0 +1,7 @@
+node_modules/
+dist/*
+!dist/*dist.[a-zA-Z0-9].js
+!dist/*.js.map
+
+.vscode/
+.idea/
