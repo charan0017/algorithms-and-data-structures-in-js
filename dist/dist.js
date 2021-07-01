@@ -1,5 +1,5 @@
 /*!
-  * Algorithms & Data Structures in JavaScript  v0.2.1 (https://github.com/charan0017/algorithms-and-data-structures-in-js#readme)
+  * Algorithms & Data Structures in JavaScript  v0.3.0 (https://github.com/charan0017/algorithms-and-data-structures-in-js#readme)
   * Copyright 2011-2021 Sai Charan
   * Licensed under MIT (https://github.com/charan0017/algorithms-and-data-structures-in-js/blob/main/LICENSE)
   */

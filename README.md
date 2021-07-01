@@ -18,9 +18,9 @@ npm i algorithms-and-data-structures-in-js
 yarn add algorithms-and-data-structures-in-js
 
 # in Browser (add this is head or body tag)
-<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.2.0/dist/dist.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.3.0/dist/dist.js" crossorigin="anonymous"></script>
 #  or add this is head or body tag (for minified version)
-<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.2.0/dist/dist.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.3.0/dist/dist.min.js" crossorigin="anonymous"></script>
 ```
 
 ## Usage
