@@ -53,7 +53,7 @@ mixedStack.push({ name: "Tom" });
 
 ## Stack
 
-**Methods** - **push**, **pop**, **peek**, **size**, **toArray**, **fromArray**, **empty**, **isEmpty**
+**Methods** - **push**, **pop**, **peek**, **size**, **toArray**, **fromArray**, **empty**, **isEmpty**, **reverse**
 
 ### Usage:
 
@@ -78,13 +78,16 @@ stack.isEmpty(); // it will return true
 const stackItems = ["Physics", "Math"];
 const anotherStack = Stack.fromArray(stackItems);
 anotherStack.peek(); // it will return 'Math'
+anotherStack.toArray(); // it will return ["Physics", "Math"];
+anotherStack.reverse(); // it will reverse the stack and also returns it ["Math", "Physics"]
+anotherStack.peek(); // it will return 'Physics'
 ```
 
 Note: `stack.empty()` will empty the stack, however it will also return `stack.toArray()` of previous stack
 
 ## Queue
 
-**Methods** - **enqueue**, **dequeue**, **front**, **size**, **toArray**, **fromArray**, **empty**, **isEmpty**, **isFull**
+**Methods** - **enqueue**, **dequeue**, **front**, **size**, **toArray**, **fromArray**, **empty**, **isEmpty**, **isFull**, **reverse**
 
 ### Usage:
 
@@ -112,6 +115,8 @@ const smallQueue = Queue.fromArray(queueItems, maxQueueSize);
 smallQueue.front(); // it will return 'Physics'
 smallQueue.isFull(); // it will return true
 smallQueue.toArray(); // it will return ["Physics", "Math"];
+smallQueue.reverse(); // it will reverse the stack and also returns it ["Math", "Physics"]
+smallQueue.front(); // it will return 'Math'
 ```
 
 Note: `queue.empty()` will empty the queue, however it will also return `queue.toArray()` of previous queue
