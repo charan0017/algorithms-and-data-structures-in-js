@@ -14,6 +14,13 @@ describe('Stack Test', () => {
         assert.equal(stack.size(), 0, 'Expected to get 0 as Stack Size');
     });
 
+    it('stack.reverse()', () => {
+        const stack = new Stack();
+        movies.forEach(movie => stack.push(movie));
+        expect(() => stack.reverse()).to.not.throw();
+        assert.deepEqual(stack.toArray(), movies.slice().reverse(), `Expected to receive Items of ${movies.slice().reverse()}`);
+    });
+
     it('stack .empty(), .isEmpty()', () => {
         const stack = new Stack();
         stack.push(movies[0]);

@@ -14,7 +14,7 @@ describe('Queue Test', () => {
         assert.equal(queue.size(), 0, 'Expected to get 0 as Queue Size');
     });
 
-    it('queue .reverse()', () => {
+    it('queue.reverse()', () => {
         const queue = new Queue();
         movies.forEach(movie => queue.enqueue(movie));
         expect(() => queue.reverse()).to.not.throw();
