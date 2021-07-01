@@ -113,4 +113,4 @@ smallQueue.isFull(); // it will return true
 smallQueue.toArray(); // it will return ["Physics", "Math"];
 ```
 
-Note: `stack.empty()` will empty the stack, however it will also return `stack.toArray()` of previous stack
+Note: `queue.empty()` will empty the queue, however it will also return `queue.toArray()` of previous queue
