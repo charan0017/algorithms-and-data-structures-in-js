@@ -1,5 +1,5 @@
 {
-  "name": "@charan0017/algorithms-and-data-structures-in-js",
+  "name": "algorithms-and-data-structures-in-js",
   "description": "Algorithms and Data Structures in JavaScript",
   "version": "0.2.0",
   "config": {
@@ -10,9 +10,6 @@
     "data-structures",
     "stacks"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/charan0017/algorithms-and-data-structures-in-js.git"
