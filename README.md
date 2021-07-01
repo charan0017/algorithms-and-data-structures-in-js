@@ -47,8 +47,9 @@ mixedStack.push({ name: "Tom" });
 
 ## Documentation
 
-- [Stack](#stack)
-- [Queue](#queue)
+| Algorithms | Data Structures                    |
+| ---------- | ---------------------------------- |
+|            | -[Stack](#stack), -[Queue](#queue) |
 
 ## Stack
 
