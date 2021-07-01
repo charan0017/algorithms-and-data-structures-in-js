@@ -14,10 +14,17 @@ describe('Queue Test', () => {
         assert.equal(queue.size(), 0, 'Expected to get 0 as Queue Size');
     });
 
+    it('queue .reverse()', () => {
+        const queue = new Queue();
+        movies.forEach(movie => queue.enqueue(movie));
+        expect(() => queue.reverse()).to.not.throw();
+        assert.deepEqual(queue.toArray(), movies.slice().reverse(), `Expected to receive Items of ${movies.slice().reverse()}`);
+    });
+
     it('queue .empty(), .isEmpty()', () => {
-        const queue = new Queue(1);
-        queue.enqueue(movies[0]);
-        assert.deepEqual(queue.empty(), [movies[0]], `Expected to receive only 1 Item of ${[movies[0]]}`);
+        const queue = new Queue();
+        movies.forEach(movie => queue.enqueue(movie));
+        assert.deepEqual(queue.empty(), movies, `Expected to receive Items of ${movies}`);
         assert.equal(queue.isEmpty(), true, 'Expected to get true as Empty Queue');
     });
 
