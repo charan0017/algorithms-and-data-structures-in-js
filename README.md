@@ -49,7 +49,7 @@ mixedStack.push({ name: "Tom" });
 
 | Algorithms | Data Structures                    |
 | ---------- | ---------------------------------- |
-|            | -[Stack](#stack), -[Queue](#queue) |
+|            | •[Stack](#stack), •[Queue](#queue) |
 
 ## Stack
 
