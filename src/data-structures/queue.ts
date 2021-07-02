@@ -1,30 +1,7 @@
-class QueueItem {
-    private _value: any = null;
-    private nextQueueItem: QueueItem | null = null;
-
-    constructor(value: any) {
-        this._value = value;
-    }
-
-    value() {
-        return this._value;
-    }
-
-    setNextQueueItem(queueItem: QueueItem): void {
-        if (this.hasNextQueueItem()) {
-            return;
-        }
-        this.nextQueueItem = queueItem;
-    }
-
-    getNextQueueItem(): QueueItem | null {
-        return this.nextQueueItem;
-    }
-
-    private hasNextQueueItem(): boolean {
-        return this.getNextQueueItem() !== null;
-    }
-}
+interface QueueItem {
+    value: any;
+    nextQueueItem: QueueItem | null;
+};
 
 export default class Queue {
     private maxCapacity: number | null = null;
@@ -45,14 +22,14 @@ export default class Queue {
             return;
         }
 
-        const queueItem: QueueItem = new QueueItem(value);
+        const queueItem: QueueItem = { value, nextQueueItem: null };
 
         if (!this.firstQueueItem) {
             this.firstQueueItem = queueItem;
         }
         
-        if (this.lastQueueItem) {
-            this.lastQueueItem.setNextQueueItem(queueItem);
+        if (this.lastQueueItem && !this.lastQueueItem.nextQueueItem) {
+            this.lastQueueItem.nextQueueItem = queueItem;
         }
 
         this.lastQueueItem = queueItem;
@@ -65,7 +42,7 @@ export default class Queue {
             return undefined;
         }
         const dequeuedValue = this.front();
-        this.firstQueueItem = this.firstQueueItem.getNextQueueItem();
+        this.firstQueueItem = this.firstQueueItem.nextQueueItem;
         this.count--;
         return dequeuedValue;
     }
@@ -74,7 +51,7 @@ export default class Queue {
         if (this.isEmpty() || !this.firstQueueItem) {
             return undefined;
         }
-        return this.firstQueueItem.value();
+        return this.firstQueueItem.value;
     }
 
     size(): number {
@@ -111,8 +88,8 @@ export default class Queue {
         const queueItems: any[] = [];
         let queueItem: QueueItem | null = this.firstQueueItem;
         while (queueItem) {
-            queueItems.push(queueItem.value());
-            queueItem = queueItem.getNextQueueItem();
+            queueItems.push(queueItem.value);
+            queueItem = queueItem.nextQueueItem;
         }
         return queueItems;
     }
