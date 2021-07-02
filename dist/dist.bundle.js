@@ -1,5 +1,5 @@
 /*!
-  * Algorithms & Data Structures in JavaScript  v0.3.0 (https://github.com/charan0017/algorithms-and-data-structures-in-js#readme)
+  * Algorithms & Data Structures in JavaScript  v0.4.0 (https://github.com/charan0017/algorithms-and-data-structures-in-js#readme)
   * Copyright 2011-2021 Sai Charan
   * Licensed under MIT (https://github.com/charan0017/algorithms-and-data-structures-in-js/blob/main/LICENSE)
   */
@@ -83,38 +83,6 @@
       return Stack;
     }();
 
-    var QueueItem =
-    /** @class */
-    function () {
-      function QueueItem(value) {
-        this._value = null;
-        this.nextQueueItem = null;
-        this._value = value;
-      }
-
-      QueueItem.prototype.value = function () {
-        return this._value;
-      };
-
-      QueueItem.prototype.setNextQueueItem = function (queueItem) {
-        if (this.hasNextQueueItem()) {
-          return;
-        }
-
-        this.nextQueueItem = queueItem;
-      };
-
-      QueueItem.prototype.getNextQueueItem = function () {
-        return this.nextQueueItem;
-      };
-
-      QueueItem.prototype.hasNextQueueItem = function () {
-        return this.getNextQueueItem() !== null;
-      };
-
-      return QueueItem;
-    }();
-
     var Queue =
     /** @class */
     function () {
@@ -139,14 +107,17 @@
           return;
         }
 
-        var queueItem = new QueueItem(value);
+        var queueItem = {
+          value: value,
+          nextQueueItem: null
+        };
 
         if (!this.firstQueueItem) {
           this.firstQueueItem = queueItem;
         }
 
-        if (this.lastQueueItem) {
-          this.lastQueueItem.setNextQueueItem(queueItem);
+        if (this.lastQueueItem && !this.lastQueueItem.nextQueueItem) {
+          this.lastQueueItem.nextQueueItem = queueItem;
         }
 
         this.lastQueueItem = queueItem;
@@ -159,7 +130,7 @@
         }
 
         var dequeuedValue = this.front();
-        this.firstQueueItem = this.firstQueueItem.getNextQueueItem();
+        this.firstQueueItem = this.firstQueueItem.nextQueueItem;
         this.count--;
         return dequeuedValue;
       };
@@ -169,7 +140,7 @@
           return undefined;
         }
 
-        return this.firstQueueItem.value();
+        return this.firstQueueItem.value;
       };
 
       Queue.prototype.size = function () {
@@ -211,8 +182,8 @@
         var queueItem = this.firstQueueItem;
 
         while (queueItem) {
-          queueItems.push(queueItem.value());
-          queueItem = queueItem.getNextQueueItem();
+          queueItems.push(queueItem.value);
+          queueItem = queueItem.nextQueueItem;
         }
 
         return queueItems;
@@ -233,6 +204,150 @@
       return Queue;
     }();
 
+    function priorityPush(arr, value) {
+      var leastIndex = arr.findIndex(function (num) {
+        return value < num;
+      });
+
+      if (leastIndex < 0) {
+        arr.push(value);
+      } else {
+        arr.splice(leastIndex, 0, value);
+      }
+    }
+
+    var PriorityQueue =
+    /** @class */
+    function () {
+      function PriorityQueue(maxCapacity) {
+        if (maxCapacity === void 0) {
+          maxCapacity = null;
+        }
+
+        this.maxCapacity = null;
+        this.count = 0;
+        this.storage = {};
+        this.priorities = [];
+        this.maxCapacity = Number.isInteger(maxCapacity) ? maxCapacity : this.maxCapacity;
+      }
+
+      PriorityQueue.prototype.print = function () {
+        console.log(this.toArray());
+      };
+
+      PriorityQueue.prototype.enqueue = function (priorityQueueItem) {
+        if (this.hasCap() && this.isFull()) {
+          return;
+        }
+
+        var value = priorityQueueItem.value,
+            priority = priorityQueueItem.priority;
+
+        if (!this.storage[priority]) {
+          this.storage[priority] = new Queue();
+          priorityPush(this.priorities, priority);
+        }
+
+        this.storage[priority].enqueue(value);
+        this.count++;
+      };
+
+      PriorityQueue.prototype.dequeue = function () {
+        if (this.isEmpty()) {
+          return undefined;
+        }
+
+        var firstPriority = this.priorities[0];
+        var queue = this.storage[firstPriority];
+        var dequeuedValue = queue.dequeue();
+        this.count--;
+
+        if (queue.isEmpty()) {
+          delete this.storage[firstPriority];
+          this.priorities = this.priorities.slice(1);
+        }
+
+        return dequeuedValue;
+      };
+
+      PriorityQueue.prototype.front = function () {
+        if (this.isEmpty()) {
+          return undefined;
+        }
+
+        var firstPriority = this.priorities[0];
+        var queue = this.storage[firstPriority];
+        return {
+          value: queue.front(),
+          priority: firstPriority
+        };
+      };
+
+      PriorityQueue.prototype.size = function () {
+        return this.count;
+      };
+
+      PriorityQueue.prototype.empty = function () {
+        var oldPriorityQueueItems = this.toArray();
+        this.count = 0;
+        this.storage = {};
+        this.priorities = [];
+        return oldPriorityQueueItems;
+      };
+
+      PriorityQueue.prototype.isEmpty = function () {
+        return this.size() === 0;
+      };
+
+      PriorityQueue.prototype.isFull = function () {
+        return this.count === this.maxCapacity;
+      };
+
+      PriorityQueue.prototype.hasCap = function () {
+        return Number.isInteger(this.maxCapacity);
+      };
+
+      PriorityQueue.prototype.toArray = function () {
+        var priorityQueueItems = [];
+
+        var _loop_1 = function _loop_1(priority) {
+          var queue = this_1.storage[priority];
+          var queueItems = queue.toArray();
+          queueItems.forEach(function (item) {
+            return priorityQueueItems.push({
+              value: item,
+              priority: priority
+            });
+          });
+        };
+
+        var this_1 = this;
+
+        for (var _i = 0, _a = this.priorities; _i < _a.length; _i++) {
+          var priority = _a[_i];
+
+          _loop_1(priority);
+        }
+
+        return priorityQueueItems;
+      };
+
+      PriorityQueue.fromArray = function (array, maxQueueCapacity) {
+        if (maxQueueCapacity === void 0) {
+          maxQueueCapacity = null;
+        }
+
+        var priorityQueue = new PriorityQueue(maxQueueCapacity);
+        array.forEach(function (priorityQueueItem) {
+          return priorityQueue.enqueue(priorityQueueItem);
+        });
+        return priorityQueue;
+      };
+
+      return PriorityQueue;
+    }();
+
+    exports.PriorityQueue = PriorityQueue;
     exports.Queue = Queue;
     exports.Stack = Stack;
 

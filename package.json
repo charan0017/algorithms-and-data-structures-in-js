@@ -1,9 +1,9 @@
 {
   "name": "algorithms-and-data-structures-in-js",
   "description": "Algorithms and Data Structures in JavaScript",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "config": {
-    "version_short": "0.3"
+    "version_short": "0.4"
   },
   "main": "main.js",
   "keywords": [

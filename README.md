@@ -18,9 +18,9 @@ npm i algorithms-and-data-structures-in-js
 yarn add algorithms-and-data-structures-in-js
 
 # in Browser (add this is head or body tag)
-<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.3.0/dist/dist.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.4.0/dist/dist.js" crossorigin="anonymous"></script>
 #  or add this is head or body tag (for minified version)
-<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.3.0/dist/dist.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/algorithms-and-data-structures-in-js@0.4.0/dist/dist.min.js" crossorigin="anonymous"></script>
 ```
 
 ## Usage
@@ -47,13 +47,15 @@ mixedStack.push({ name: "Tom" });
 
 ## Documentation
 
-| Algorithms | Data Structures                          |
-| ---------- | ---------------------------------------- |
-|            | [**Stack**](#stack), [**Queue**](#queue) |
+| Algorithms | Data Structures                                                                    |
+| ---------- | ---------------------------------------------------------------------------------- |
+|            | -[**Stack**](#stack), -[**Queue**](#queue), -[**Priority Queue**](#priority-queue) |
 
 ## Stack
 
-**Methods** - **push**, **pop**, **peek**, **size**, **toArray**, **fromArray**, **empty**, **isEmpty**, **reverse**
+**Instance Methods** - **push**, **pop**, **peek**, **size**, **toArray**, **empty**, **isEmpty**, **reverse**
+
+**Static Methods** - **fromArray** (it will return new Stack instance)
 
 ### Usage:
 
@@ -87,7 +89,9 @@ Note: `stack.empty()` will empty the stack, however it will also return `stack.t
 
 ## Queue
 
-**Methods** - **enqueue**, **dequeue**, **front**, **size**, **toArray**, **fromArray**, **empty**, **isEmpty**, **isFull**, **reverse**
+**Instance Methods** - **enqueue**, **dequeue**, **front**, **print**, **size**, **toArray**, **empty**, **isEmpty**, **isFull**, **reverse**
+
+**Static Methods** - **fromArray** (it will return new Queue instance)
 
 ### Usage:
 
@@ -103,10 +107,11 @@ queue.enqueue("Apples");
 queue.enqueue("Mangoes");
 queue.enqueue("Bananas");
 queue.dequeue(); // it will return 'Apples'
-queue.front(); // it will return 'Mangoes'
 queue.size(); // it will return 2
+queue.front(); // it will return 'Mangoes'
+queue.print(); // it will log queue-items to console ["Mangoes", "Bananas"]
 queue.toArray(); // it will return ["Mangoes", "Bananas"];
-queue.empty(); // it will empty the stack
+queue.empty(); // it will empty the queue
 queue.isEmpty(); // it will return true
 
 const queueItems = ["Physics", "Math", "Chemistry"];
@@ -115,8 +120,52 @@ const smallQueue = Queue.fromArray(queueItems, maxQueueSize);
 smallQueue.front(); // it will return 'Physics'
 smallQueue.isFull(); // it will return true
 smallQueue.toArray(); // it will return ["Physics", "Math"];
-smallQueue.reverse(); // it will reverse the stack and also returns it ["Math", "Physics"]
+smallQueue.reverse(); // it will reverse the queue and also returns it ["Math", "Physics"]
 smallQueue.front(); // it will return 'Math'
 ```
 
 Note: `queue.empty()` will empty the queue, however it will also return `queue.toArray()` of previous queue
+
+## Priority Queue
+
+**Instance Methods** - **enqueue**, **dequeue**, **front**, **print**, **size**, **toArray**, **empty**, **isEmpty**, **isFull**
+
+**Static Methods** - **fromArray** (it will return new Queue instance)
+
+### Usage:
+
+```javascript
+// Importing in Node.js
+const { PriorityQueue } = require("algorithms-and-data-structures-in-js");
+
+// Importing in Browser
+const { PriorityQueue } = algorithmsAndDataStructuresInJS;
+
+const priorityQueue = new PriorityQueue();
+priorityQueue.enqueue({ value: "Apples", priority: 3 });
+priorityQueue.enqueue({ value: "Mangoes", priority: 1 });
+priorityQueue.enqueue({ value: "Bananas", priority: 9 });
+priorityQueue.dequeue(); // it will return 'Mangoes'
+priorityQueue.size(); // it will return 2
+priorityQueue.front(); // it will return 'Apples'
+priorityQueue.print(); // it will log priority-queue-items to console [{ value: "Apples", priority: 3 }, { value: "Bananas", priority: 9 }]
+priorityQueue.toArray(); // it will return [{ value: "Apples", priority: 3 }, { value: "Bananas", priority: 9 }];
+priorityQueue.empty(); // it will empty the priorityQueue
+priorityQueue.isEmpty(); // it will return true
+
+const priorityQueueItems = [
+  { value: "Physics", priority: 0.9 },
+  { value: "Math", priority: 0.1 },
+  { value: "Chemistry", priority: 0.5 },
+];
+const maxQueueSize = 2;
+const smallPriorityQueue = Queue.PriorityQueue(
+  priorityQueueItems,
+  maxQueueSize
+);
+smallPriorityQueue.front(); // it will return 'Math'
+smallPriorityQueue.isFull(); // it will return true
+smallPriorityQueue.toArray(); // it will return [{ value: "Math", priority: 0.1 }, { value: "Physics", priority: 0.9 }];
+```
+
+Note: `priorityQueue.empty()` will empty the priorityQueue, however it will also return `priorityQueue.toArray()` of previous priorityQueue
