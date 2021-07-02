@@ -1,5 +1,6 @@
 import Stack from './data-structures/stack';
 import Queue from './data-structures/queue';
+import PriorityQueue from './data-structures/priority-queue';
 
 export {
     // algorithms
@@ -7,4 +8,5 @@ export {
     // dataStructures
     Stack,
     Queue,
+    PriorityQueue,
 };
