@@ -1,7 +1,7 @@
 {
   "name": "algorithms-and-data-structures-in-js",
   "description": "Algorithms and Data Structures in JavaScript",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "config": {
     "version_short": "0.4"
   },
@@ -24,8 +24,6 @@
     "compile": "npx tsc",
     "postinstall": "npm run compile",
     "compile-standalone": "npm-run-all js-compile js-minify",
-    "test": "npm run compile && mocha --parallel ./tests/**/*.test.js",
-    "test-watch": "nodemon -i \"./dist\" -i \"./node_modules\" --exec npm run test",
     "js-compile": "npm-run-all --parallel js-compile-*",
     "js-compile-standalone": "rollup --environment BUNDLE:false --config build/rollup.config.js --sourcemap",
     "js-compile-standalone-esm": "rollup --environment ESM:true,BUNDLE:false --config build/rollup.config.js --sourcemap",
@@ -33,7 +31,13 @@
     "js-minify": "npm-run-all --parallel js-minify-*",
     "js-minify-standalone": "terser --compress passes=2 --mangle --comments \"/^!/\" --source-map \"content=dist/dist.js.map,includeSources,url=dist.js.map\" --output dist/dist.min.js dist/dist.js",
     "js-minify-standalone-esm": "terser --compress passes=2 --mangle --comments \"/^!/\" --source-map \"content=dist/dist.esm.js.map,includeSources,url=dist.esm.min.js.map\" --output dist/dist.esm.min.js dist/dist.esm.js",
-    "js-minify-bundle": "terser --compress passes=2 --mangle --comments \"/^!/\" --source-map \"content=dist/dist.bundle.js.map,includeSources,url=dist.bundle.min.js.map\" --output dist/dist.bundle.min.js dist/dist.bundle.js"
+    "js-minify-bundle": "terser --compress passes=2 --mangle --comments \"/^!/\" --source-map \"content=dist/dist.bundle.js.map,includeSources,url=dist.bundle.min.js.map\" --output dist/dist.bundle.min.js dist/dist.bundle.js",
+    "test": "npm run compile && mocha --parallel ./tests/unit-tests/**/*.test.js",
+    "test-benchmark": "npm run compile && node tests/bench-mark-tests/index.test.js",
+    "test-all": "npm run compile && mocha --parallel ./tests/unit-tests/**/*.test.js && node tests/bench-mark-tests/index.test.js",
+    "test-watch": "nodemon -i \"./dist\" -i \"./node_modules\" --exec npm run test",
+    "test-watch-benchmark": "nodemon -i \"./dist\" -i \"./node_modules\" --exec npm run test-benchmark",
+    "test-watch-all": "nodemon -i \"./dist\" -i \"./node_modules\" --exec npm run test-all"
   },
   "author": "Sai Charan",
   "license": "MIT",
@@ -50,6 +54,7 @@
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-replace": "^2.4.2",
     "@types/node": "^15.12.5",
+    "benchmark": "^2.1.4",
     "chai": "^4.3.4",
     "mocha": "^9.0.1",
     "nodemon": "^2.0.8",

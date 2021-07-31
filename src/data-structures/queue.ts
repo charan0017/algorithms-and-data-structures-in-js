@@ -44,6 +44,9 @@ export default class Queue {
         const dequeuedValue = this.front();
         this.firstQueueItem = this.firstQueueItem.nextQueueItem;
         this.count--;
+        if (this.isEmpty()) {
+            this.lastQueueItem = null;
+        }
         return dequeuedValue;
     }
 

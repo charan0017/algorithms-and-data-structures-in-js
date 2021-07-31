@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { Stack } = require('../../main');
+const { Stack } = require('../../../main');
 
 describe('Stack Test', () => {
     const movies = ['Titanic', 'Avatar'];

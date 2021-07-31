@@ -1,5 +1,5 @@
 /*!
-  * Algorithms & Data Structures in JavaScript  v0.4.0 (https://github.com/charan0017/algorithms-and-data-structures-in-js#readme)
+  * Algorithms & Data Structures in JavaScript  v0.4.1 (https://github.com/charan0017/algorithms-and-data-structures-in-js#readme)
   * Copyright 2011-2021 Sai Charan
   * Licensed under MIT (https://github.com/charan0017/algorithms-and-data-structures-in-js/blob/main/LICENSE)
   */
@@ -126,6 +126,11 @@ function () {
     var dequeuedValue = this.front();
     this.firstQueueItem = this.firstQueueItem.nextQueueItem;
     this.count--;
+
+    if (this.isEmpty()) {
+      this.lastQueueItem = null;
+    }
+
     return dequeuedValue;
   };
 

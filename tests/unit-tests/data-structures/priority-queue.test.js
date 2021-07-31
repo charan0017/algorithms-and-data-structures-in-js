@@ -1,5 +1,5 @@
 const { assert, expect } = require('chai');
-const { PriorityQueue } = require('../../main');
+const { PriorityQueue } = require('../../../main');
 
 describe('PriorityQueue Test', () => {
     const movies = [{value: 'Titanic', priority: 3}, {value: 'Avatar', priority: 1}];
